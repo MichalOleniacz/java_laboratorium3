@@ -1,0 +1,7 @@
+org/michaloleniacz/lab/Main.class
+org/michaloleniacz/lab/package-info.class
+org/michaloleniacz/lab/enums/Color.class
+org/michaloleniacz/lab/model/Rectangle.class
+org/michaloleniacz/lab/model/Shape.class
+org/michaloleniacz/lab/utils/ShapeDescriber.class
+org/michaloleniacz/lab/model/Triangle.class
