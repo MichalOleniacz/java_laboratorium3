@@ -6,6 +6,7 @@ import org.hibernate.Transaction;
 import org.jetbrains.annotations.Nullable;
 import org.michaloleniacz.lab.utils.HibernateUtil;
 
+import java.util.Objects;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
@@ -17,7 +18,7 @@ public abstract class AbstractDAO<T> implements GenericDAO<T> {
         this.concreteEntityClass = concreteEntityClass;
     }
 
-    private void execWriteTransactional(Consumer<Session> queryOperation) {
+    private void execWriteTransactional(final Consumer<Session> queryOperation) {
         Session session = null;
         Transaction transaction = null;
         try {
@@ -27,29 +28,25 @@ public abstract class AbstractDAO<T> implements GenericDAO<T> {
             transaction.commit();
         } catch (RuntimeException exception) {
             log.error("Failed to process database transactional query\n" + exception);
-            if (transaction != null) {
+            if (!Objects.isNull(transaction)) {
                 transaction.rollback();
             }
         } finally {
-            if (session != null) {
+            if (!Objects.isNull(session)) {
                 session.close();
             }
         }
     }
 
-    private @Nullable T execRead(Function<Session, T> queryOperation) {
+    private @Nullable T execRead(final Function<Session, T> queryOperation) {
         Session session = null;
-        Transaction transaction = null;
         try {
             session = HibernateUtil.getSession();
             return queryOperation.apply(session);
         } catch (RuntimeException exception) {
             log.error("Failed to process database read query\n" + exception);
-            if (transaction != null) {
-                transaction.rollback();
-            }
         } finally {
-            if (session != null) {
+            if (!Objects.isNull(session)) {
                 session.close();
             }
         }
@@ -67,7 +64,9 @@ public abstract class AbstractDAO<T> implements GenericDAO<T> {
     }
 
     @Override
-    public T findById(final Long id) {
-        return execRead(session -> session.get(concreteEntityClass, id));
+    public <K extends T> @Nullable K findById(final Long id) {
+        final T result = execRead(session -> session.get(concreteEntityClass, id));
+        if (Objects.isNull(result)) return null;
+        else return (K) result;
     }
 }

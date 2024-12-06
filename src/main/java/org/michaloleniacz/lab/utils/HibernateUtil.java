@@ -6,17 +6,19 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import java.util.Objects;
+
 @Slf4j
 public enum HibernateUtil {
     ;
 
-    private static final String HIBERNATE_CFG_XML = "hibernate.cfg.xml";
+    private static final String HIBERNATE_CFG_XML_FALLBACK = "hibernate.cfg.xml";
     private static SessionFactory sessionFactory;
 
-    private static void createSessionFactory() {
+    public static void initialize(final String hibernateConfigPath) {
         try {
-            sessionFactory = new Configuration().configure(HIBERNATE_CFG_XML).buildSessionFactory();
-            log.info("Hibernate initialized from " + HIBERNATE_CFG_XML);
+            sessionFactory = new Configuration().configure(hibernateConfigPath).buildSessionFactory();
+            log.info("Hibernate initialized from " + hibernateConfigPath);
         } catch (HibernateException exception) {
             log.error("Failed to create Hibernate SessionFactory:" + exception);
             throw new ExceptionInInitializerError(exception);
@@ -24,8 +26,8 @@ public enum HibernateUtil {
     }
 
     public static Session getSession() {
-        if(sessionFactory == null || sessionFactory.isClosed()) {
-            createSessionFactory();
+        if (Objects.isNull(sessionFactory) || sessionFactory.isClosed()) {
+            initialize(HIBERNATE_CFG_XML_FALLBACK);
             return getSession();
         }
         log.debug("Opening Hibernate session.");
@@ -33,7 +35,7 @@ public enum HibernateUtil {
     }
 
     public static void closeSession() {
-        if(sessionFactory == null) {
+        if (Objects.isNull(sessionFactory)) {
             return;
         }
         log.debug("Closing Hibernate session.");

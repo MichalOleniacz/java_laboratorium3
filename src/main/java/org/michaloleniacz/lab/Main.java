@@ -5,6 +5,7 @@ import org.michaloleniacz.lab.enums.Color;
 import org.michaloleniacz.lab.model.Rectangle;
 import org.michaloleniacz.lab.model.Shape;
 import org.michaloleniacz.lab.model.Triangle;
+import org.michaloleniacz.lab.utils.HibernateUtil;
 import org.michaloleniacz.lab.utils.ShapeDescriber;
 
 /**
@@ -18,6 +19,7 @@ public class Main {
      * @param args arg list
      */
     public static void main(final String[] args) {
+        HibernateUtil.initialize("hibernate.cfg.xml");
         Rectangle rect = new Rectangle(1,2, Color.GREEN);
         Triangle triangle = new Triangle(4,5,6, Color.BLUE);
 
@@ -28,7 +30,7 @@ public class Main {
             if (i % 2 == 0) shape = new Rectangle(i, i, Color.RED);
             else shape = new Triangle(i, i, i, Color.BLUE);
             shapeDAO.save(shape);
-            ShapeDescriber.describe(shapeDAO.findById(shape.id));
+            ShapeDescriber.describe(shapeDAO.findById(shape.getId()));
             shapeDAO.delete(shape);
         }
     }

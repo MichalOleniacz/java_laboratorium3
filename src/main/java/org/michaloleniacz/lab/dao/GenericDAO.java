@@ -9,7 +9,7 @@ public interface GenericDAO<T> {
     /*
      * Find an instance of given type in persistent storage querying by entity ID.
      */
-    T findById(Long id);
+    <K extends T> K findById(Long id);
 
     /*
      * Remove an entity from persistent storage

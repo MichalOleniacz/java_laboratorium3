@@ -33,6 +33,10 @@ public class Rectangle extends Shape {
         this.height = height;
     }
 
+    public static boolean isRectangle(final Shape shape) {
+        return shape instanceof Rectangle;
+    }
+
     /**
      * Calculates the perimeter
      * @return {@link Double} rectangle perimeter

@@ -24,6 +24,7 @@
         <hibernate.version>6.6.3.Final</hibernate.version>
         <jakatraPersistance.version>3.2.0</jakatraPersistance.version>
         <postgres.version>42.7.4</postgres.version>
+        <h2database.version>2.3.232</h2database.version>
     </properties>
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
@@ -87,6 +88,12 @@
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>${postgres.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>${h2database.version}</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.jetbrains</groupId>

@@ -36,6 +36,10 @@ public class Triangle extends Shape {
         this.z = z;
     }
 
+    public static boolean isTriangle(final Shape shape) {
+        return shape instanceof Triangle;
+    }
+
     /**
      * Internal method for computing the perimeter
      * @param halfPerimeter
