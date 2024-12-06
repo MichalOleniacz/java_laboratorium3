@@ -58,4 +58,36 @@ public class ShapeDAOTest {
         assertThat(retrieved.getId()).isEqualTo(testTrig.getId());
         assertThat(Triangle.isTriangle(retrieved)).isTrue();
     }
+
+    @Test
+    @DisplayName("ShapeDAO should save and then delete new Rectangle object")
+    public void testRectangleSaveAndDelete() {
+        shapeDao.save(testRect);
+
+        shapeDao.delete(testRect);
+        Rectangle retrieved = shapeDao.findById(testRect.getId());
+
+        assertThat(retrieved).isNull();
+    }
+
+    @Test
+    @DisplayName("ShapeDAO should save and then delete new Triangle object")
+    public void testTriangleSaveAndDelete() {
+        shapeDao.save(testTrig);
+
+        shapeDao.delete(testTrig);
+        Triangle retrieved = shapeDao.findById(testTrig.getId());
+
+        assertThat(retrieved).isNull();
+    }
+
+    @Test
+    @DisplayName("ShapeDAO should return null when not found")
+    public void testFindNullReturn() {
+        Triangle retrievedTrig = shapeDao.findById(testTrig.getId());
+        Triangle retrievedRect = shapeDao.findById(testRect.getId());
+
+        assertThat(retrievedTrig).isNull();
+        assertThat(retrievedRect).isNull();
+    }
 }
