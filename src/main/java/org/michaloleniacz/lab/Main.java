@@ -11,17 +11,17 @@ import org.michaloleniacz.lab.utils.ShapeDescriber;
 /**
  * Application entry point
  */
-@SuppressWarnings({"UseOfSystemOutOrSystemErr", "PublicMethodWithoutLogging"})
+@SuppressWarnings({"PublicMethodWithoutLogging"})
 public class Main {
+
+    public static final String HIBERNATE_CFG_PATH = "hibernate.cfg.xml";
 
     /**
      * Application entry point
      * @param args arg list
      */
     public static void main(final String[] args) {
-        HibernateUtil.initialize("hibernate.cfg.xml");
-        Rectangle rect = new Rectangle(1,2, Color.GREEN);
-        Triangle triangle = new Triangle(4,5,6, Color.BLUE);
+        HibernateUtil.initialize(HIBERNATE_CFG_PATH);
 
         ShapeDAO shapeDAO = new ShapeDAO();
 
