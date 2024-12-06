@@ -11,14 +11,32 @@ import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
+/**
+ * Abstract reusable data access abstraction object providing convenient way of creating new DAO instances.
+ * @param <T> class type of child
+ */
 @Slf4j
 public abstract class AbstractDAO<T> implements GenericDAO<T> {
     private final Class<? extends T> concreteEntityClass;
 
+    /**
+     * {@link AbstractDAO}
+     * @param entityClass class from which a DAO should be created
+     */
     protected AbstractDAO(final Class<? extends T> entityClass) {
         this.concreteEntityClass = entityClass;
     }
 
+    /**
+     * Database query abstraction for performing operations modifying data.
+     * All operations are wrapped in a transaction for consistency.
+     * @param queryOperation database operation lambda expression
+     *
+     * @example
+     * <pre>
+     * execWriteTransactional(session -> session.someWriteOperation(entity))
+     * </pre>
+     */
     private static void execWriteTransactional(final Consumer<? super Session> queryOperation) {
         Session session = null;
         Transaction transaction = null;
@@ -39,6 +57,17 @@ public abstract class AbstractDAO<T> implements GenericDAO<T> {
         }
     }
 
+    /**
+     * Database query abstraction for performing read operations.
+     * This method will attempt to cast the query result into the correct type.
+     * @param queryOperation database operation lambda expression
+     * @return new class instance of the data read from database or null
+     *
+     * @example
+     * <pre>
+     * execRead(session -> session.someReadOperation(entityId))
+     * </pre>
+     */
     private @Nullable T execRead(final Function<? super Session, ? extends T> queryOperation) {
         Session session = null;
         try {

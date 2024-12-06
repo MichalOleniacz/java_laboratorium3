@@ -36,6 +36,11 @@ public class Triangle extends Shape {
         this.z = z;
     }
 
+    /**
+     * Check if given {@link Shape} is a {@link Triangle}
+     * @param shape
+     * @return bool
+     */
     public static boolean isTriangle(final Shape shape) {
         return shape instanceof Triangle;
     }

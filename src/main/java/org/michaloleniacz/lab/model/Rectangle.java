@@ -33,6 +33,11 @@ public class Rectangle extends Shape {
         this.height = height;
     }
 
+    /**
+     * Check if given {@link Shape} is a {@link Rectangle}
+     * @param shape
+     * @return bool
+     */
     public static boolean isRectangle(final Shape shape) {
         return shape instanceof Rectangle;
     }

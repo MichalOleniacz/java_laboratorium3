@@ -9,6 +9,9 @@ import org.michaloleniacz.lab.Main;
 
 import java.util.Objects;
 
+/**
+ * Utility object for working with Hibernate abstracting configuration and session logic.
+ */
 @Slf4j
 public enum HibernateUtil {
     ;
@@ -16,6 +19,10 @@ public enum HibernateUtil {
     private static final String HIBERNATE_CFG_XML_FALLBACK = Main.HIBERNATE_CFG_PATH;
     private static SessionFactory sessionFactory;
 
+    /**
+     * Dynamically configure hibernate and build {@link SessionFactory} from a config located at given path
+     * @param hibernateConfigPath file path for configuration used in {@link Configuration}
+     */
     public static void initialize(final String hibernateConfigPath) {
         try {
             sessionFactory = new Configuration().configure(hibernateConfigPath).buildSessionFactory();
@@ -26,6 +33,11 @@ public enum HibernateUtil {
         }
     }
 
+    /**
+     * Get new {@link Session} instance from available {@link SessionFactory}.
+     * If {@link SessionFactory} is not defined, auto-initialize it using fallback config path.
+     * @return new {@link Session} instance
+     */
     public static Session getSession() {
         if (Objects.isNull(sessionFactory) || sessionFactory.isClosed()) {
             initialize(HIBERNATE_CFG_XML_FALLBACK);
@@ -35,6 +47,9 @@ public enum HibernateUtil {
         return sessionFactory.openSession();
     }
 
+    /**
+     * Close current {@link SessionFactory}
+     */
     public static void closeSession() {
         if (Objects.isNull(sessionFactory)) {
             return;
