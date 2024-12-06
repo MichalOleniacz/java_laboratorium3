@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.michaloleniacz.lab.enums.Color;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class TriangleTest {
     static Triangle uut;
@@ -16,7 +17,14 @@ public class TriangleTest {
     }
 
     @Test
-    @DisplayName("Get area returns correct shape area")
+    @DisplayName("Constructor call with invalid dimentions should throw")
+    public void invalidArgsConstructorCall() {
+        assertThatThrownBy(() -> new Triangle(0, 0, 0, Color.RED))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("Get area should return correct shape area")
     public void getAreaTest() {
         // given
         final double areaExpected = 6;
@@ -27,7 +35,7 @@ public class TriangleTest {
     }
 
     @Test
-    @DisplayName("Get parameters returns correct shape parameters")
+    @DisplayName("Get parameters should return correct shape parameters")
     public void getParameterTest() {
         // given
         final double peremiterExpected = 12;
@@ -39,7 +47,7 @@ public class TriangleTest {
     }
 
     @Test
-    @DisplayName("Get correct color description")
+    @DisplayName("Get correct should return color description")
     public void getColorDescription() {
         // given
         final Triangle uut = new Triangle(1, 2, 3, Color.RED);

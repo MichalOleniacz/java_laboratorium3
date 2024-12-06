@@ -1,4 +1,7 @@
 package org.michaloleniacz.lab.enums;
+
+import jakarta.persistence.Embeddable;
+
 /**
  * Representation of an RGBA color
  * @param red red channel [0-255]
@@ -7,6 +10,7 @@ package org.michaloleniacz.lab.enums;
  * @param opacity transparency value [0-255]
  */
 @SuppressWarnings("ClassWithoutLogger")
+@Embeddable
 public record Color(byte red, byte green, byte blue, byte opacity) {
     private static final byte RGB_RANGE_MIN = (byte) 0;
     private static final byte RGB_RANGE_MAX = (byte) 255;
@@ -23,7 +27,7 @@ public record Color(byte red, byte green, byte blue, byte opacity) {
      * Instance of Color with default values representing pure green (0,255,0)
      */
     public static final Color GREEN = new Color(
-            RGB_RANGE_MAX,
+            RGB_RANGE_MIN,
             RGB_RANGE_MAX,
             RGB_RANGE_MIN,
             RGB_RANGE_MAX
@@ -32,9 +36,9 @@ public record Color(byte red, byte green, byte blue, byte opacity) {
      * Instance of Color with default values representing pure blue (0,0,255)
      */
     public static final Color BLUE = new Color(
+            RGB_RANGE_MIN,
+            RGB_RANGE_MIN,
             RGB_RANGE_MAX,
-            RGB_RANGE_MIN,
-            RGB_RANGE_MIN,
             RGB_RANGE_MAX
     );
 

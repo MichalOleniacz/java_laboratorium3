@@ -1,6 +1,6 @@
 package org.michaloleniacz.lab.model;
 
-import lombok.RequiredArgsConstructor;
+import jakarta.persistence.*;
 import lombok.ToString;
 import org.michaloleniacz.lab.enums.Color;
 
@@ -8,9 +8,23 @@ import org.michaloleniacz.lab.enums.Color;
  * Abstract class representing any shape.
  */
 @ToString
-@RequiredArgsConstructor
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+@Table(name = "shapes")
 public abstract class Shape {
-    private final Color color;
+    @Embedded
+    private Color color;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public Long id;
+
+    public Shape() {
+    }
+
+    public Shape(final Color color) {
+        this.color = color;
+    }
+
     /**
      * Debug method outputting the class name to stdout
      */

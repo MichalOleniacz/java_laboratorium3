@@ -5,6 +5,7 @@ import org.michaloleniacz.lab.model.Shape;
 import org.slf4j.Logger;
 
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Utility static singleton for displaying information about {@link Shape} to stdout
@@ -27,5 +28,9 @@ public enum ShapeDescriber {
      */
     public static final void describeMany(final Shape[] concreteShapes) {
         Arrays.stream(concreteShapes).forEach(it -> log.info(it.toString()));
+    }
+
+    public static final void describeMany(final List<Shape> concreteShapes) {
+        concreteShapes.forEach(it -> log.info(it.toString()));
     }
 }

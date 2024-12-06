@@ -1,5 +1,6 @@
 package org.michaloleniacz.lab;
 
+import org.michaloleniacz.lab.dao.ShapeDAO;
 import org.michaloleniacz.lab.enums.Color;
 import org.michaloleniacz.lab.model.Rectangle;
 import org.michaloleniacz.lab.model.Shape;
@@ -17,13 +18,16 @@ public class Main {
      * @param args arg list
      */
     public static void main(final String[] args) {
-        final Color color = new Color((byte) 1, (byte) 2, (byte) 3);
+        Rectangle rect = new Rectangle(1,2, Color.GREEN);
+        Triangle triangle = new Triangle(4,5,6, Color.BLUE);
 
-        final Shape[] concreteShapes = {
-                new Rectangle(1,2, Color.GREEN),
-                new Triangle(4,5,6, Color.BLUE)
-        };
+        ShapeDAO shapeDAO = new ShapeDAO();
 
-        ShapeDescriber.describeMany(concreteShapes);
+        shapeDAO.save(rect);
+        shapeDAO.save(rect);
+        shapeDAO.save(triangle);
+        Shape trig = shapeDAO.findById(triangle.id);
+
+        ShapeDescriber.describe(trig);
     }
 }
