@@ -1,12 +1,12 @@
 package org.michaloleniacz.lab.dao;
 
-import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.jetbrains.annotations.Nullable;
 import org.michaloleniacz.lab.utils.HibernateUtil;
 
-import java.util.Optional;
+import java.util.function.Consumer;
 import java.util.function.Function;
 
 @Slf4j
@@ -17,41 +17,57 @@ public abstract class AbstractDAO<T> implements GenericDAO<T> {
         this.concreteEntityClass = concreteEntityClass;
     }
 
+    private void execWriteTransactional(Consumer<Session> queryOperation) {
+        Session session = null;
+        Transaction transaction = null;
+        try {
+            session = HibernateUtil.getSession();
+            transaction = session.beginTransaction();
+            queryOperation.accept(session);
+            transaction.commit();
+        } catch (RuntimeException exception) {
+            log.error("Failed to process database transactional query\n" + exception);
+            if (transaction != null) {
+                transaction.rollback();
+            }
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+    }
+
+    private @Nullable T execRead(Function<Session, T> queryOperation) {
+        Session session = null;
+        Transaction transaction = null;
+        try {
+            session = HibernateUtil.getSession();
+            return queryOperation.apply(session);
+        } catch (RuntimeException exception) {
+            log.error("Failed to process database read query\n" + exception);
+            if (transaction != null) {
+                transaction.rollback();
+            }
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return null;
+    }
+
     @Override
     public void save(final T entity) {
-        try (Session session = HibernateUtil.getSession()){
-            Transaction tx = session.beginTransaction();
-            session.persist(entity);
-            tx.commit();
-        } catch (RuntimeException exception) {
-            log.error("Failed to process database query\n" + exception);
-        } finally {
-            HibernateUtil.closeSession();
-        }
+        execWriteTransactional(session -> session.persist(entity));
     }
 
     @Override
     public void delete(final T entity) {
-        try (Session session = HibernateUtil.getSession()){
-            Transaction tx = session.beginTransaction();
-            session.remove(entity);
-            tx.commit();
-        } catch (RuntimeException exception) {
-            log.error("Failed to process database query\n" + exception);
-        } finally {
-            HibernateUtil.closeSession();
-        }
+        execWriteTransactional(session -> session.remove(entity));
     }
 
     @Override
     public T findById(final Long id) {
-        try (Session session = HibernateUtil.getSession()) {
-            return session.get(concreteEntityClass, id);
-        } catch (RuntimeException exception) {
-            log.error("Failed to retrieve value\n" + exception);
-            return null;
-        } finally {
-            HibernateUtil.closeSession();
-        }
+        return execRead(session -> session.get(concreteEntityClass, id));
     }
 }

@@ -23,11 +23,13 @@ public class Main {
 
         ShapeDAO shapeDAO = new ShapeDAO();
 
-        shapeDAO.save(rect);
-        shapeDAO.save(rect);
-        shapeDAO.save(triangle);
-        Shape trig = shapeDAO.findById(triangle.id);
-
-        ShapeDescriber.describe(trig);
+        for(int i = 1; i <= 100; i++) {
+            Shape shape;
+            if (i % 2 == 0) shape = new Rectangle(i, i, Color.RED);
+            else shape = new Triangle(i, i, i, Color.BLUE);
+            shapeDAO.save(shape);
+            ShapeDescriber.describe(shapeDAO.findById(shape.id));
+            shapeDAO.delete(shape);
+        }
     }
 }
