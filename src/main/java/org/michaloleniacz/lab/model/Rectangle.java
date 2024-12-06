@@ -17,9 +17,9 @@ import org.michaloleniacz.lab.enums.Color;
 @ToString(callSuper = true)
 @NoArgsConstructor
 public class Rectangle extends Shape {
-    @Column
+    @Column(nullable = false)
     private double width;
-    @Column
+    @Column(nullable = false)
     private double height;
 
     public Rectangle(final double width, final double height, final Color color) {

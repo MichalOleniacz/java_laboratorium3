@@ -17,11 +17,11 @@ import org.michaloleniacz.lab.enums.Color;
 @ToString(callSuper = true)
 @NoArgsConstructor
 public class Triangle extends Shape {
-    @Column
+    @Column(nullable = false)
     private double x;
-    @Column
+    @Column(nullable = false)
     private double y;
-    @Column
+    @Column(nullable = false)
     private double z;
 
     public Triangle(final double x, final double y, final double z, final Color color) {
