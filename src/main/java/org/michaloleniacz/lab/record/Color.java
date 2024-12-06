@@ -1,4 +1,4 @@
-package org.michaloleniacz.lab.enums;
+package org.michaloleniacz.lab.record;
 
 import jakarta.persistence.Embeddable;
 

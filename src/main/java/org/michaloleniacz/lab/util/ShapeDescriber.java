@@ -1,8 +1,7 @@
-package org.michaloleniacz.lab.utils;
+package org.michaloleniacz.lab.util;
 
 import lombok.extern.slf4j.Slf4j;
 import org.michaloleniacz.lab.model.Shape;
-import org.slf4j.Logger;
 
 import java.util.Arrays;
 import java.util.List;

@@ -3,7 +3,7 @@ package org.michaloleniacz.lab.model;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.ToString;
-import org.michaloleniacz.lab.enums.Color;
+import org.michaloleniacz.lab.record.Color;
 
 /**
  * Abstract class representing any shape.

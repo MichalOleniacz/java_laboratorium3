@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.jetbrains.annotations.Nullable;
-import org.michaloleniacz.lab.utils.HibernateUtil;
+import org.michaloleniacz.lab.util.HibernateUtil;
 
 import java.util.Objects;
 import java.util.Optional;

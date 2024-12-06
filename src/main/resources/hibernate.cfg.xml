@@ -14,6 +14,6 @@
         <mapping class="org.michaloleniacz.lab.model.Rectangle" />
         <mapping class="org.michaloleniacz.lab.model.Triangle" />
         <mapping class="org.michaloleniacz.lab.model.Shape" />
-        <mapping class="org.michaloleniacz.lab.enums.Color" />
+        <mapping class="org.michaloleniacz.lab.record.Color" />
     </session-factory>
 </hibernate-configuration>

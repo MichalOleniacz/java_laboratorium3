@@ -6,7 +6,7 @@ import jakarta.persistence.Table;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
-import org.michaloleniacz.lab.enums.Color;
+import org.michaloleniacz.lab.record.Color;
 
 /**
  * Concrete implementation of a {@link Shape} representing a triangle

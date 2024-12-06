@@ -1,4 +1,4 @@
-package org.michaloleniacz.lab.utils;
+package org.michaloleniacz.lab.util;
 
 import org.hibernate.Session;
 import org.junit.jupiter.api.DisplayName;

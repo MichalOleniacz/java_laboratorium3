@@ -1,12 +1,12 @@
 package org.michaloleniacz.lab;
 
 import org.michaloleniacz.lab.dao.ShapeDAO;
-import org.michaloleniacz.lab.enums.Color;
+import org.michaloleniacz.lab.record.Color;
 import org.michaloleniacz.lab.model.Rectangle;
 import org.michaloleniacz.lab.model.Shape;
 import org.michaloleniacz.lab.model.Triangle;
-import org.michaloleniacz.lab.utils.HibernateUtil;
-import org.michaloleniacz.lab.utils.ShapeDescriber;
+import org.michaloleniacz.lab.util.HibernateUtil;
+import org.michaloleniacz.lab.util.ShapeDescriber;
 
 /**
  * Application entry point

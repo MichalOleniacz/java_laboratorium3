@@ -1,11 +1,11 @@
 package org.michaloleniacz.lab.dao;
 
 import org.junit.jupiter.api.*;
-import org.michaloleniacz.lab.enums.Color;
+import org.michaloleniacz.lab.record.Color;
 import org.michaloleniacz.lab.model.Rectangle;
 import org.michaloleniacz.lab.model.Shape;
 import org.michaloleniacz.lab.model.Triangle;
-import org.michaloleniacz.lab.utils.HibernateUtil;
+import org.michaloleniacz.lab.util.HibernateUtil;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
