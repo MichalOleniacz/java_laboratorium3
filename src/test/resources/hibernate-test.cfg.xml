@@ -15,10 +15,10 @@
         <property name="dialect">org.hibernate.dialect.H2Dialect</property>
         <property name="show_sql">true</property>
         <property name="hbm2ddl.auto">create</property>
-        <mapping class="org.michaloleniacz.lab.model.Rectangle" />
-        <mapping class="org.michaloleniacz.lab.model.Triangle" />
-        <mapping class="org.michaloleniacz.lab.model.Shape" />
-        <mapping class="org.michaloleniacz.lab.record.Color" />
+        <mapping class="org.michaloleniacz.lab.domain.model.Rectangle" />
+        <mapping class="org.michaloleniacz.lab.domain.model.Triangle" />
+        <mapping class="org.michaloleniacz.lab.domain.model.Shape" />
+        <mapping class="org.michaloleniacz.lab.domain.record.Color" />
     </session-factory>
 
 </hibernate-configuration>

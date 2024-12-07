@@ -1,10 +1,10 @@
-package org.michaloleniacz.lab.dao;
+package org.michaloleniacz.lab.integration.dao;
 
 import org.junit.jupiter.api.*;
-import org.michaloleniacz.lab.record.Color;
-import org.michaloleniacz.lab.model.Rectangle;
-import org.michaloleniacz.lab.model.Shape;
-import org.michaloleniacz.lab.model.Triangle;
+import org.michaloleniacz.lab.domain.model.Rectangle;
+import org.michaloleniacz.lab.domain.model.Shape;
+import org.michaloleniacz.lab.domain.model.Triangle;
+import org.michaloleniacz.lab.domain.record.Color;
 import org.michaloleniacz.lab.util.HibernateUtil;
 
 import static org.assertj.core.api.Assertions.assertThat;

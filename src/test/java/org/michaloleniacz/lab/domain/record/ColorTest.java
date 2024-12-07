@@ -1,4 +1,4 @@
-package org.michaloleniacz.lab.record;
+package org.michaloleniacz.lab.domain.record;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -1,4 +1,4 @@
-package org.michaloleniacz.lab.record;
+package org.michaloleniacz.lab.domain.record;
 
 import jakarta.persistence.Embeddable;
 

@@ -1,4 +1,4 @@
-package org.michaloleniacz.lab.dao;
+package org.michaloleniacz.lab.integration.dao;
 
 public interface GenericDAO<T> {
     /*

@@ -11,9 +11,9 @@
         <property name="hibernate.hbm2ddl.auto">update</property>
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.format_sql">true</property>
-        <mapping class="org.michaloleniacz.lab.model.Rectangle" />
-        <mapping class="org.michaloleniacz.lab.model.Triangle" />
-        <mapping class="org.michaloleniacz.lab.model.Shape" />
-        <mapping class="org.michaloleniacz.lab.record.Color" />
+        <mapping class="org.michaloleniacz.lab.domain.model.Rectangle" />
+        <mapping class="org.michaloleniacz.lab.domain.model.Triangle" />
+        <mapping class="org.michaloleniacz.lab.domain.model.Shape" />
+        <mapping class="org.michaloleniacz.lab.domain.record.Color" />
     </session-factory>
 </hibernate-configuration>

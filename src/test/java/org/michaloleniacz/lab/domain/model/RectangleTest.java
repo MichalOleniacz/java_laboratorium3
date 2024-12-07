@@ -1,9 +1,9 @@
-package org.michaloleniacz.lab.model;
+package org.michaloleniacz.lab.domain.model;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.michaloleniacz.lab.record.Color;
+import org.michaloleniacz.lab.domain.record.Color;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;

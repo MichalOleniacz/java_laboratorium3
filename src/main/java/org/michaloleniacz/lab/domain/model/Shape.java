@@ -1,9 +1,10 @@
-package org.michaloleniacz.lab.model;
+package org.michaloleniacz.lab.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.ToString;
-import org.michaloleniacz.lab.record.Color;
+import org.michaloleniacz.lab.domain.record.Color;
 
 /**
  * Abstract class representing any shape.
@@ -34,19 +35,23 @@ public abstract class Shape {
         System.out.println(this.getClass().getSimpleName());
     }
 
+
     /**
      * Calculates the shapes area
      */
+    @JsonIgnore
     protected abstract double getArea();
 
     /**
      * Calculates the shapes perimeter
      */
+    @JsonIgnore
     protected abstract double getPerimeter();
 
     /**
      * @return {@link Color} as a string
      */
+    @JsonIgnore
     public final String getColorDescription() {
         return color.toString();
     }

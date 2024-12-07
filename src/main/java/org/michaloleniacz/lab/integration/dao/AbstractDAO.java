@@ -1,4 +1,4 @@
-package org.michaloleniacz.lab.dao;
+package org.michaloleniacz.lab.integration.dao;
 
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Session;

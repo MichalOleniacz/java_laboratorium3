@@ -1,18 +1,20 @@
-package org.michaloleniacz.lab.model;
+package org.michaloleniacz.lab.domain.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
-import org.michaloleniacz.lab.record.Color;
+import org.michaloleniacz.lab.domain.record.Color;
 
 /**
  * Concrete implementation of a {@link Shape} representing a triangle
  */
 @Entity
 @Table(name = "triangles")
+@Getter
 @Slf4j
 @ToString(callSuper = true)
 @NoArgsConstructor

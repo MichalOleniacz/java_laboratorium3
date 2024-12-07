@@ -1,6 +1,5 @@
 package org.michaloleniacz.lab;
 
-import org.michaloleniacz.lab.util.HibernateUtil;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -18,7 +17,7 @@ public class LabMainApplication {
      * @param args arg list
      */
     public static void main(final String[] args) {
-        HibernateUtil.initialize(HIBERNATE_CFG_PATH);
+//        HibernateUtil.initialize(HIBERNATE_CFG_PATH);
 //
 //        ShapeDAO shapeDAO = new ShapeDAO();
 //
