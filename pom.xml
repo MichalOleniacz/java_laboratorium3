@@ -9,6 +9,7 @@
     <version>1.0</version>
 
     <properties>
+        <java.version>23</java.version>
         <maven.compiler.source>23</maven.compiler.source>
         <maven.compiler.target>23</maven.compiler.target>
         <maven.compiler.version>3.13.0</maven.compiler.version>
@@ -17,52 +18,70 @@
         <!--   LOGGING     -->
         <slf4j.version>2.0.7</slf4j.version>
         <logback.version>1.5.12</logback.version>
-        <JUnitJupiter.version>5.11.3</JUnitJupiter.version>
+        <junit-jupiter.version>5.11.3</junit-jupiter.version>
         <assertj.version>3.26.3</assertj.version>
         <jacoco.version>0.8.12</jacoco.version>
         <mockito.version>5.14.2</mockito.version>
         <hibernate.version>6.6.3.Final</hibernate.version>
-        <jakatraPersistance.version>3.2.0</jakatraPersistance.version>
+        <jakarta-persistance.version>3.2.0</jakarta-persistance.version>
         <postgres.version>42.7.4</postgres.version>
         <h2database.version>2.3.232</h2database.version>
+        <spring-boot.version>3.4.0</spring-boot.version>
     </properties>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.4.0</version>
+        <relativePath/>
+    </parent>
+
+<!--    <dependencyManagement>-->
     <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>${lombok.version}</version>
+<!--                <version>${lombok.version}</version>-->
             <scope>provided</scope>
         </dependency>
         <!--   LOGGING     -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>${slf4j.version}</version>
+<!--                <version>${slf4j.version}</version>-->
         </dependency>
         <!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>${logback.version}</version>
+<!--                <version>${logback.version}</version>-->
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <version>${JUnitJupiter.version}</version>
+<!--                <version>${junit-jupiter.version}</version>-->
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
-            <version>${JUnitJupiter.version}</version>
+<!--                <version>${junit-jupiter.version}</version>-->
             <scope>test</scope>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.assertj/assertj-core -->
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
-            <version>${assertj.version}</version>
+<!--                <version>${assertj.version}</version>-->
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -75,24 +94,24 @@
         <dependency>
             <groupId>org.hibernate.orm</groupId>
             <artifactId>hibernate-core</artifactId>
-            <version>${hibernate.version}</version>
+<!--                <version>${hibernate.version}</version>-->
         </dependency>
         <!-- https://mvnrepository.com/artifact/jakarta.persistence/jakarta.persistence-api -->
         <dependency>
             <groupId>jakarta.persistence</groupId>
             <artifactId>jakarta.persistence-api</artifactId>
-            <version>${jakatraPersistance.version}</version>
+<!--                <version>${jakarta-persistance.version}</version>-->
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version>${postgres.version}</version>
+<!--                <version>${postgres.version}</version>-->
         </dependency>
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
-            <version>${h2database.version}</version>
+<!--                <version>${h2database.version}</version>-->
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -102,6 +121,7 @@
             <scope>compile</scope>
         </dependency>
     </dependencies>
+<!--    </dependencyManagement>-->
 
     <reporting>
         <plugins>
@@ -121,6 +141,10 @@
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
