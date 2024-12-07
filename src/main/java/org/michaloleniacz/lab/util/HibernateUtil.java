@@ -5,7 +5,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import org.michaloleniacz.lab.Main;
+import org.michaloleniacz.lab.LabMainApplication;
 
 import java.util.Objects;
 
@@ -16,7 +16,7 @@ import java.util.Objects;
 public enum HibernateUtil {
     ;
 
-    private static final String HIBERNATE_CFG_XML_FALLBACK = Main.HIBERNATE_CFG_PATH;
+    private static final String HIBERNATE_CFG_XML_FALLBACK = LabMainApplication.HIBERNATE_CFG_PATH;
     private static SessionFactory sessionFactory;
 
     /**
